@@ -1,0 +1,23 @@
+:root{
+	--mint-50:#f7fff9;
+	--mint-100:#eafef3;
+	--mint-200:#b8f2d0;
+	--lime:#7ee36c;
+	--dark-green:#08321f;
+}
+body{background:var(--mint-50)}
+.rounded-4{border-radius:25px!important}
+.card.product-card img{height:180px;object-fit:cover}
+.product-card{transition:transform .3s,box-shadow .3s}
+.product-card:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(5,39,29,0.12)}
+.btn{transition:transform .3s}
+.btn:hover{transform:scale(1.03)}
+#typewriter{font-size:1.05rem}
+.hero-img img{transition:opacity .8s ease}
+#testimonials .t-card{min-width:260px;max-width:360px}
+
+/* responsive tweaks */
+@media(max-width:768px){
+	.hero-img{max-width:320px}
+	.display-5{font-size:1.6rem}
+}
