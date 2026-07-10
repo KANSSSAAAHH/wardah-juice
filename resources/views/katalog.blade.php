@@ -4,207 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Katalog - Wardah Juice</title>
-<style>
-  :root{
-    --green-900:#123317;
-    --green-800:#164d20;
-    --green-700:#1f6b2a;
-    --green-600:#2f8c3a;
-    --green-500:#3fa34a;
-    --green-100:#eaf7e6;
-    --green-050:#f5fbf3;
-    --cream:#fffdf8;
-    --ink:#16241a;
-    --ink-soft:#5b6b5e;
-    --line:#e3ede1;
-    --gold:#e8b64b;
-    --radius-lg:22px;
-    --radius-md:14px;
-    --shadow-soft:0 12px 30px -14px rgba(18,51,23,.25);
-    --font-display:'Fredoka', 'Poppins', sans-serif;
-    --font-body:'Inter', sans-serif;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--font-body);
-    color:var(--ink);
-    background:var(--cream);
-    overflow-x:hidden;
-  }
-  img{max-width:100%; display:block;}
-  a{text-decoration:none; color:inherit;}
-  ul{list-style:none;}
-  .wrap{max-width:1400px; margin:0 auto; padding:0 40px;}
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    font-family:var(--font-display); font-weight:600; font-size:15px;
-    padding:14px 26px; border-radius:999px; border:2px solid transparent;
-    cursor:pointer; transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-    white-space:nowrap;
-  }
-  .btn-primary{
-    background:linear-gradient(135deg, var(--green-700) 0%, var(--green-900) 100%);
-    color:#fff;
-    box-shadow:0 10px 22px -8px rgba(18,51,23,.5);
-  }
-  .btn-primary:hover{
-    transform:translateY(-2px);
-    background:linear-gradient(135deg, var(--green-800) 0%, var(--green-900) 100%);
-    box-shadow:0 14px 26px -8px rgba(18,51,23,.55);
-  }
-  .btn-outline{background:#fff; color:var(--green-700); border-color:var(--green-600);}
-  .btn-outline:hover{background:var(--green-050); transform:translateY(-2px);}
-  .btn-dark{
-    background:linear-gradient(135deg, var(--green-700) 0%, var(--green-900) 100%);
-    color:#fff; border-color:var(--green-800);
-    box-shadow:0 10px 22px -8px rgba(18,51,23,.5);
-  }
-  .btn-dark:hover{
-    background:linear-gradient(135deg, var(--green-800) 0%, var(--green-900) 100%);
-    transform:translateY(-2px);
-  }
-  .btn-wa{background:#fff; color:var(--green-700); border-color:var(--green-600);}
-  .btn-wa svg{width:18px; height:18px;}
-
-  /* ===== HEADER ===== */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,253,248,.9); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 40px; max-width:1400px; margin:0 auto;}
-  .logo{font-family:var(--font-display); font-weight:700; font-size:22px; color:var(--ink);}
-  .logo span{color:var(--green-600);}
-  .nav-links{display:flex; align-items:center; gap:34px;}
-  .nav-links a{font-weight:600; font-size:15px; color:var(--ink-soft); position:relative; padding:4px 0;}
-  .nav-links a.active,.nav-links a:hover{color:var(--green-700);}
-  .nav-links a.active::after{content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--green-600); border-radius:2px;}
-  .nav-cta{display:flex; align-items:center; gap:14px;}
-  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
-  .burger span{width:24px; height:2px; background:var(--ink); border-radius:2px;}
-
-  /* ===== KATALOG HERO ===== */
-  .katalog-hero{
-    background:linear-gradient(180deg, var(--green-100) 0%, var(--cream) 78%);
-    padding:52px 0 34px; text-align:center;
-  }
-  .katalog-leaf{
-    width:56px; height:56px; margin:0 auto 18px; border-radius:16px;
-    background:var(--green-100); display:flex; align-items:center; justify-content:center;
-  }
-  .katalog-leaf svg{width:28px; height:28px; color:var(--green-600); stroke:var(--green-600);}
-  .katalog-hero h1{
-    font-family:var(--font-display); font-weight:700; font-size:clamp(28px,3.6vw,40px);
-    margin-bottom:12px;
-  }
-  .katalog-hero > .wrap > p{
-    color:var(--ink-soft); font-size:15px; line-height:1.7; max-width:520px; margin:0 auto 26px;
-  }
-  .pill-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:26px;}
-  .pill{
-    font-family:var(--font-display); font-weight:600; font-size:14px;
-    padding:10px 20px; border-radius:999px; border:1.5px solid var(--line);
-    background:#fff; color:var(--ink-soft); cursor:pointer; transition:all .15s ease;
-  }
-  .pill:hover{border-color:var(--green-500); color:var(--green-700);}
-  .pill.active{
-    background:linear-gradient(135deg, var(--green-600) 0%, var(--green-800) 100%);
-    color:#fff; border-color:transparent; box-shadow:0 8px 16px -8px rgba(18,51,23,.5);
-  }
-  .search-sort-row{display:flex; gap:14px; max-width:640px; margin:0 auto; flex-wrap:wrap;}
-  .search-box{
-    flex:1 1 300px; display:flex; align-items:center; gap:10px;
-    background:#fff; border:1.5px solid var(--line); border-radius:999px;
-    padding:12px 18px;
-  }
-  .search-box svg{width:18px; height:18px; color:var(--ink-soft); flex-shrink:0;}
-  .search-box input{
-    border:none; outline:none; font-size:14.5px; font-family:var(--font-body);
-    width:100%; background:transparent; color:var(--ink);
-  }
-
-  /* ===== SECTION HEAD ===== */
-  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px;}
-  .section-head h2{font-family:var(--font-display); font-weight:700; font-size:clamp(20px,2.4vw,26px);}
-  .section-head a{font-weight:600; color:var(--green-700); font-size:14px; cursor:pointer;}
-  .section-head a:hover{text-decoration:underline;}
-  .cat-section{padding:8px 0 44px;}
-
-  /* ===== PRODUCT GRID (kartu bisa diklik ke halaman detail) ===== */
-  .product-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
-  .product-card{
-    display:block; background:#fff; border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden;
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .product-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-soft);}
-  .product-card .thumb{aspect-ratio:1/1; overflow:hidden; background:var(--green-050);}
-  .product-card .thumb img{width:100%; height:100%; object-fit:cover;}
-  .product-info{padding:14px 16px 18px;}
-  .product-info h4{font-family:var(--font-display); font-weight:600; font-size:15px; margin-bottom:6px;}
-  .product-info .price{color:var(--green-700); font-weight:700; font-size:14.5px; display:block; margin-bottom:8px;}
-  .product-info .detail-link{color:var(--green-600); font-weight:600; font-size:13px;}
-
-  /* ===== CTA ===== */
-  .cta{padding:10px 0 70px;}
-  .cta-inner{
-    background:var(--green-100); border-radius:var(--radius-lg); text-align:center;
-    padding:54px 24px; position:relative; overflow:hidden;
-  }
-  .cta-inner::before{content:'🍃'; position:absolute; font-size:80px; opacity:.15; top:-10px; left:20px; transform:rotate(-15deg);}
-  .cta-inner::after{content:'🍋'; position:absolute; font-size:80px; opacity:.15; bottom:-20px; right:20px; transform:rotate(20deg);}
-  .cta-inner h3{font-family:var(--font-display); font-weight:700; font-size:clamp(22px,3vw,30px); margin-bottom:8px;}
-  .cta-inner h3 em{font-style:normal; color:var(--green-600);}
-  .cta-inner p{color:var(--ink-soft); font-size:14.5px; max-width:520px; margin:0 auto 24px; line-height:1.6;}
-  .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;}
-
-  /* ===== FOOTER ===== */
-  footer{background:var(--green-900); color:#cfe6cf; padding:56px 0 22px;}
-  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:32px; margin-bottom:36px;}
-  .footer-brand .logo{color:#fff; margin-bottom:10px; margin-top:4px; display:block;}
-  .footer-brand .logo span{color:var(--green-500);}
-  .footer-brand p{font-size:13.5px; color:#a9c6ab; line-height:1.7; max-width:260px;}
-  .footer-col h5{font-family:var(--font-display); color:#fff; font-size:14.5px; margin-bottom:16px;}
-  .footer-col ul li{margin-bottom:10px;}
-  .footer-col ul li a{font-size:13.5px; color:#a9c6ab; transition:color .15s ease;}
-  .footer-col ul li a:hover{color:#fff;}
-  .avail-links{display:flex; flex-direction:column; gap:10px;}
-  .avail-links a{
-    display:flex; align-items:center; gap:10px; font-size:13.5px; color:#a9c6ab;
-    background:rgba(255,255,255,.06); padding:9px 12px; border-radius:10px; transition:background .15s ease, color .15s ease;
-  }
-  .avail-links a:hover{background:rgba(255,255,255,.12); color:#fff;}
-  .avail-links img{width:18px; height:18px; object-fit:contain;}
-  .contact-list li{display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:#a9c6ab; margin-bottom:14px; line-height:1.6;}
-  .contact-list svg{width:17px; height:17px; flex-shrink:0; margin-top:2px; color:var(--green-500);}
-  .contact-list a:hover{color:#fff;}
-  .footer-bottom{border-top:1px solid rgba(255,255,255,.1); padding-top:20px; text-align:center; font-size:12.5px; color:#7fa082;}
-
-  /* ===== WA FLOATING BUTTON ===== */
-  .wa-float{
-    position:fixed; bottom:22px; right:22px; z-index:60;
-    width:58px; height:58px; border-radius:50%; background:#25D366;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 10px 22px -6px rgba(0,0,0,.35); transition:transform .2s ease;
-  }
-  .wa-float:hover{transform:scale(1.08);}
-  .wa-float svg{width:30px; height:30px; color:#fff;}
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width:960px){
-    .product-grid{grid-template-columns:repeat(2,1fr);}
-    .footer-grid{grid-template-columns:1fr 1fr; row-gap:30px;}
-  }
-  @media (max-width:720px){
-    .nav-links{position:fixed; top:68px; left:0; right:0; background:#fff; flex-direction:column; padding:18px 24px; gap:18px; border-bottom:1px solid var(--line); transform:translateY(-140%); transition:transform .25s ease; box-shadow:0 12px 24px -12px rgba(0,0,0,.15);}
-    .nav-links.open{transform:translateY(0);}
-    .burger{display:flex;}
-    .nav-cta .btn-primary{display:none;}
-    .footer-grid{grid-template-columns:1fr;}
-    .product-grid{grid-template-columns:repeat(2,1fr);}
-    .sort-select{flex:1 1 100%;}
-  }
-</style>
+<link rel="stylesheet" href="css/katalog.css">
 </head>
 <body>
 
@@ -358,11 +158,9 @@
       <div class="footer-col">
         <h5>Tersedia di</h5>
         <div class="avail-links">
-          <!-- NOTE: link GoFood masih dummy, ganti "#" dengan link asli setelah toko dibuat -->
           <a href="#" target="_blank" rel="noopener">
             <img src="images/gofood.png" alt="GoFood"> GoFood
           </a>
-          <!-- NOTE: link ShopeeFood masih dummy, ganti "#" dengan link asli setelah toko dibuat -->
           <a href="#" target="_blank" rel="noopener">
             <img src="images/shopeefood.png" alt="ShopeeFood"> ShopeeFood
           </a>
@@ -393,127 +191,31 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.15c-.24.68-1.4 1.31-1.93 1.39-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.34-.14-.2-1.17-1.56-1.17-2.97 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.11.33.02.53-.09.2-.14.32-.28.5-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.43.19.5.3.07.11.07.62-.17 1.3Z"/></svg>
 </a>
 
-<script>
-  // Mobile nav toggle
-  const burgerBtn = document.getElementById('burgerBtn');
-  const navLinks = document.getElementById('navLinks');
-  burgerBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+<!-- ===== TOPPING MODAL (khusus Flavor Series) ===== -->
+<div class="topping-overlay" id="toppingOverlay">
+  <div class="topping-modal" role="dialog" aria-modal="true">
+    <div class="topping-modal-head" style="position:relative;">
+      <img id="toppingModalImg" src="" alt="">
+      <div>
+        <h3 id="toppingModalName"></h3>
+        <span class="price" id="toppingModalPrice"></span>
+      </div>
+      <button class="topping-modal-close" id="toppingModalClose" aria-label="Tutup">&times;</button>
+    </div>
+    <div class="topping-modal-body">
+      <h5>Pilih Topping (opsional)</h5>
+      <div class="topping-list" id="toppingList"></div>
+    </div>
+    <div class="topping-modal-foot">
+      <button class="btn btn-primary" id="toppingOrderBtn">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.15c-.24.68-1.4 1.31-1.93 1.39-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.34-.14-.2-1.17-1.56-1.17-2.97 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.11.33.02.53-.09.2-.14.32-.28.5-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.43.19.5.3.07.11.07.62-.17 1.3Z"/></svg>
+        Pesan via WhatsApp
+      </button>
+      <p class="topping-note">Topping tanpa biaya tambahan. Konfirmasi akhir via WhatsApp.</p>
+    </div>
+  </div>
+</div>
 
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // ===== HELPER =====
-  function slugify(str){
-    return str.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-  }
-  function formatRp(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
-
-  // slug produk = dipakai untuk link ke detail-produk.blade.php DAN untuk nama file foto (kecuali di-override)
-  function makeProduct(name, price, category, imgOverride){
-    const slug = slugify(name);
-    return { name, price, category, slug, img: imgOverride || `images/${slug}.png` };
-  }
-
-const anekaJus = [
-  makeProduct('Jus Apukat',    10000, 'aneka-jus', 'images/jusapukat.png'),
-  makeProduct('Jus Jambu',      10000, 'aneka-jus', 'images/jusjambu.png'),
-  makeProduct('Jus Nanas',      10000, 'aneka-jus', 'images/jusnanas.png'),
-  makeProduct('Jus Nangka',     10000, 'aneka-jus', 'images/jusnangka.png'),
-  makeProduct('Jus Semangka',   10000, 'aneka-jus', 'images/jussemangka.png'),
-  makeProduct('Jus Durian',     10000, 'aneka-jus', 'images/jusdurian.png'),
-  makeProduct('Jus Blimbing',   10000, 'aneka-jus', 'images/jusbelimbing.png'),
-  makeProduct('Jus Melon',      10000, 'aneka-jus', 'images/jus melon.png'),
-  makeProduct('Es Jeruk',       10000, 'aneka-jus', 'images/jusjeruk.png'),
-  makeProduct('Jus Strawberry', 10000, 'aneka-jus', 'images/jusstoberi.png'),
-  makeProduct('Jus Sirsak',     10000, 'aneka-jus', 'images/jussirsak.png'),
-  makeProduct('Jus Wortel',     10000, 'aneka-jus', 'images/juswortel.png'),
-  makeProduct('Jus Tomat',      10000, 'aneka-jus', 'images/justomat.png'),
-  makeProduct('Jus Mentimun',   10000, 'aneka-jus', 'images/justimun.png'),
-  makeProduct('Jus Mangga',     10000, 'aneka-jus', 'images/jusmangga.png'),
-];
-
-  // Produk dengan foto yang sudah ada di folder images/ (nama file lama, tanpa tanda hubung)
-  const esTeler = [ makeProduct('Es Teler', 10000, 'es-teler', 'images/esteler.png') ];
-  const sopBuah = [ makeProduct('Sop Buah', 10000, 'sop-buah', 'images/sopbuah.png') ];
-
-  // Kategori baru — harga masih perkiraan, silakan sesuaikan. Foto: images/es-campur.png, images/es-teh.png
-const esCampur = [ makeProduct('Es Campur', 10000, 'es-campur', 'images/escampur.png') ];
-const esTeh   = [ makeProduct('Es Teh', 3000, 'es-teh', 'images/teh1.png') ];
-
-const flavorSeries = [
-  makeProduct('Coklat Silver',      12000, 'flavor-series', 'images/escoklat.png'),
-  makeProduct('Redvelvet',   12000, 'flavor-series', 'images/esredvelvet.png'),
-  makeProduct('Matcha',      12000, 'flavor-series', 'images/esmatcha.png'),
-  makeProduct('Black Forest',12000, 'flavor-series', 'images/blackforiest.png'),
-];
-
-  // ===== RENDER PRODUCT GRID — setiap kartu diklik menuju detail-produk.blade.php =====
-  function renderGrid(gridId, items){
-    const grid = document.getElementById(gridId);
-    grid.innerHTML = items.map(item => {
-      const params = new URLSearchParams({
-        produk: item.slug,
-        nama: item.name,
-        harga: item.price,
-        gambar: item.img,
-        kategori: item.category
-      });
-      const detailUrl = `/detail-produk?${params.toString()}`;
-      return `
-        <a href="${detailUrl}" class="product-card sortable-item" data-name="${item.name}" data-price="${item.price}">
-          <div class="thumb"><img src="${item.img}" alt="${item.name}"></div>
-          <div class="product-info">
-            <h4>${item.name}</h4>
-            <span class="price">${formatRp(item.price)}</span>
-            <span class="detail-link">Lihat Detail →</span>
-          </div>
-        </a>
-      `;
-    }).join('');
-  }
-
-  renderGrid('grid-aneka-jus', anekaJus);
-  renderGrid('grid-es-teler', esTeler);
-  renderGrid('grid-sop-buah', sopBuah);
-  renderGrid('grid-es-campur', esCampur);
-  renderGrid('grid-es-teh', esTeh);
-  renderGrid('grid-flavor-series', flavorSeries);
-
-  // ===== FILTER KATEGORI (pill) =====
-  const pillRow = document.getElementById('pillRow');
-  const catSections = document.querySelectorAll('.cat-section');
-
-  function setCategory(cat){
-    pillRow.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.cat === cat));
-    catSections.forEach(sec => {
-      sec.style.display = (cat === 'semua' || sec.dataset.category === cat) ? '' : 'none';
-    });
-  }
-  pillRow.querySelectorAll('.pill').forEach(p => {
-    p.addEventListener('click', () => setCategory(p.dataset.cat));
-  });
-
-  // "Lihat Semua" per section -> filter ke kategori itu
-  document.querySelectorAll('[data-goto]').forEach(link => {
-    link.addEventListener('click', () => {
-      const cat = link.dataset.goto;
-      setCategory(cat);
-      document.getElementById('cat-' + cat).scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-  });
-
-  // ===== SEARCH (nama produk) =====
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', () => {
-    const q = searchInput.value.trim().toLowerCase();
-    document.querySelectorAll('.sortable-item').forEach(el => {
-      const name = el.dataset.name.toLowerCase();
-      el.style.display = name.includes(q) ? '' : 'none';
-    });
-  });
-
-</script>
-
+<script src="js/katalog.js"></script>
 </body>
 </html>

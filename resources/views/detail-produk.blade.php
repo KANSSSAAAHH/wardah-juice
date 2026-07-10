@@ -7,6 +7,56 @@
 
     $waNumber = '6283892606102';
     $waText   = 'Halo, saya ingin pesan ' . $nama . ' (Rp ' . number_format($harga, 0, ',', '.') . ')';
+
+    // Checklist deskripsi disesuaikan per kategori
+    $checklistByCategory = [
+        'aneka-jus' => [
+            'Dibuat dari buah segar pilihan',
+            'Tanpa pengawet & pemanis buatan',
+            'Fresh diblender saat dipesan',
+            'Kaya vitamin & menyehatkan',
+        ],
+        'es-teler' => [
+            'Fresh dibuat saat dipesan',
+            'Alpukat, kelapa muda & nangka pilihan',
+            'Susu & sirup berkualitas',
+            'Higienis & terjaga kebersihannya',
+        ],
+        'sop-buah' => [
+            'Buah segar potong pilihan',
+            'Kuah sop yang menyegarkan',
+            'Fresh dibuat saat dipesan',
+            'Higienis & terjaga kebersihannya',
+        ],
+        'es-campur' => [
+            'Aneka topping pilihan',
+            'Es serut halus & segar',
+            'Fresh dibuat saat dipesan',
+            'Higienis & terjaga kebersihannya',
+        ],
+        'es-teh' => [
+            'Diseduh dari teh berkualitas',
+            'Racikan gula pas, segar & tidak eneg',
+            'Disajikan dingin saat dipesan',
+            'Higienis & terjaga kebersihannya',
+        ],
+        'flavor-series' => [
+            'Rasa premium favorit',
+            'Bisa tambah topping kesukaanmu',
+            'Fresh dibuat saat dipesan',
+            'Higienis & terjaga kebersihannya',
+        ],
+    ];
+
+    // Default fallback kalau kategori tidak dikenali
+    $defaultChecklist = [
+        'Fresh dibuat saat dipesan',
+        'Tanpa pengawet',
+        'Bahan pilihan berkualitas',
+        'Higienis & terjaga kebersihannya',
+    ];
+
+    $checklist = $checklistByCategory[$kategori] ?? $defaultChecklist;
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -238,10 +288,12 @@
         <span class="price">{{ number_format($harga, 0, ',', '.') }}</span>
 
         <ul class="detail-checklist">
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Fresh dibuat saat dipesan</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Tanpa pengawet</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Buah pilihan</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Higienis &amp; terjaga kebersihannya</li>
+          @foreach ($checklist as $item)
+          <li>
+            <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            {{ $item }}
+          </li>
+          @endforeach
         </ul>
 
         <a href="https://wa.me/{{ $waNumber }}?text={{ rawurlencode($waText) }}" target="_blank" class="btn btn-dark btn-full">Pesan Sekarang</a>
@@ -258,19 +310,19 @@
       <a href="/katalog">Lihat Semua</a>
     </div>
     <div class="product-grid">
-      <a href="/detail-produk?produk=jus-apukat&nama=Jus%20Apukat&harga=10000&gambar=images/jusapukat.png" class="product-card">
+      <a href="/detail-produk?produk=jus-apukat&nama=Jus%20Apukat&harga=10000&gambar=images/jusapukat.png&kategori=aneka-jus" class="product-card">
         <div class="thumb"><img src="{{ asset('images/jusapukat.png') }}" alt="Jus Apukat"></div>
         <div class="product-info"><h4>Jus Apukat</h4><span class="price">Rp 10.000</span></div>
       </a>
-      <a href="/detail-produk?produk=jus-durian&nama=Jus%20Durian&harga=10000&gambar=images/jusdurian.png" class="product-card">
+      <a href="/detail-produk?produk=jus-durian&nama=Jus%20Durian&harga=10000&gambar=images/jusdurian.png&kategori=aneka-jus" class="product-card">
         <div class="thumb"><img src="{{ asset('images/jusdurian.png') }}" alt="Jus Durian"></div>
         <div class="product-info"><h4>Jus Durian</h4><span class="price">Rp 10.000</span></div>
       </a>
-      <a href="/detail-produk?produk=es-teler&nama=Es%20Teler&harga=10000&gambar=images/esteler.png" class="product-card">
+      <a href="/detail-produk?produk=es-teler&nama=Es%20Teler&harga=10000&gambar=images/esteler.png&kategori=es-teler" class="product-card">
         <div class="thumb"><img src="{{ asset('images/esteler.png') }}" alt="Es Teler"></div>
         <div class="product-info"><h4>Es Teler</h4><span class="price">Rp 10.000</span></div>
       </a>
-      <a href="/detail-produk?produk=sop-buah&nama=Sop%20Buah&harga=10000&gambar=images/sopbuah.png" class="product-card">
+      <a href="/detail-produk?produk=sop-buah&nama=Sop%20Buah&harga=10000&gambar=images/sopbuah.png&kategori=sop-buah" class="product-card">
         <div class="thumb"><img src="{{ asset('images/sopbuah.png') }}" alt="Sop Buah"></div>
         <div class="product-info"><h4>Sop Buah</h4><span class="price">Rp 10.000</span></div>
       </a>
